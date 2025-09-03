@@ -18,26 +18,35 @@ vim.opt.rtp:prepend(lazypath)
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
-vim.opt.shiftwidth=4
-vim.opt.number = true
 
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    -- { "neovim/nvim-lspconfig",
-    --    version = "0.1.7" },
+    { "neovim/nvim-lspconfig",
+	dependencies = {
+	    { "folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+		    library = {
+			{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+		    },
+		},
+	    },
+	},
+	config = function()
+	    require("lspconfig").lua_ls.setup{}
+	end,
+    },
     { "mason-org/mason.nvim" },
-    -- {
-    --     "mason-org/mason-lspconfig.nvim",
-    --     opts = {},
-    --     dependencies = {
-    --         { "mason-org/mason.nvim", opts = {} },
-    --         "neovim/nvim-lspconfig",
-    --     },
-    -- },
+    { "mason-org/mason-lspconfig.nvim",
+	opts = {},
+	dependencies = {
+	    { "mason-org/mason.nvim", opts = {} },
+	    "neovim/nvim-lspconfig",
+	},
+    },
+    { 'hrsh7th/nvim-cmp' },
+    { 'hrsh7th/cmp-nvim-lsp' },
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     { "nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate" },
     { "nvim-tree/nvim-web-devicons", opts = {} },
@@ -53,6 +62,25 @@ require("lazy").setup({
       -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
       -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
 	lazy = false,
+    },
+    { "nvim-tree/nvim-tree.lua",
+	version = "*",
+	lazy = false,
+	dependencies = {
+	    "nvim-tree/nvim-web-devicons",
+	},
+	config = function()
+	    require("nvim-tree").setup {}
+	end,
+    },
+    { 'ThePrimeagen/harpoon',
+	requires = {{'nvim-lua/plenary.vim'}}
+    },
+    { "lukas-reineke/indent-blankline.nvim",
+	main = "ibl",
+	---@module "ibl"
+	---@type ibl.config
+	opts = {},
     }
   },
 
@@ -63,13 +91,4 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
-vim.keymap.set('n', '<leader>n', ':nohlsearch<CR>') -- limpa o hlsearch
-vim.keymap.set('n', '<leader><tab>', ':b#<CR>')
-vim.keymap.set('n', '<C-d>', '<C-d>zz', opts)
-vim.keymap.set('n', '<C-u>', '<C-u>zz', opts)
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+vim.opt.colorcolumn = "80"
