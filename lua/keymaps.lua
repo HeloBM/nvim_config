@@ -29,3 +29,6 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 
 -- nvim-tree
 vim.keymap.set('n', '<c-n>', ':NvimTreeFindFileToggle<CR>')
+
+-- cellular-automaton
+vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")

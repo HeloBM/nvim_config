@@ -113,7 +113,8 @@ require("lazy").setup({
 	    --   If not available, we use `mini` as the fallback
 	    "rcarriga/nvim-notify",
 	}
-    }
+    },
+    { 'eandrju/cellular-automaton.nvim' }
   },
 
   -- Configure any other settings here. See the documentation for more details.
