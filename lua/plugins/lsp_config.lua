@@ -11,7 +11,7 @@ require("mason-lspconfig").setup({
 })
 
 vim.diagnostic.config({
-    virtual_text = true,  -- Show inline messages
+    virtual_text = true, -- Show inline messages
     signs = true,         -- Keep signs in the sign column
     underline = true,     -- Underline problematic code
     update_in_insert = false,
@@ -35,24 +35,23 @@ for type, icon in pairs(diagnostic_signs) do
 end
 
 local on_attach = function(_, _)
-    local opts = { noremap=true, silent=true, buffer=bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {})
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, {})
     vim.keymap.set('n', '<leader>K', vim.diagnostic.open_float, {})
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
+    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, {})
+    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, {})
     vim.keymap.set('n', '<leader>wl', function()
 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, opts)
-    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+	end, {})
+    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, {})
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
+    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
     vim.keymap.set('n', '<leader>f', function()
 	vim.lsp.buf.format { async = true }
-	end, opts)
+	end, {})
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()

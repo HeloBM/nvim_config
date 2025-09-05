@@ -47,7 +47,6 @@ require("lazy").setup({
     },
     { 'hrsh7th/nvim-cmp' },
     { 'hrsh7th/cmp-nvim-lsp' },
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     { "nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate" },
     { "nvim-tree/nvim-web-devicons", opts = {} },
     { 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
@@ -81,14 +80,63 @@ require("lazy").setup({
 	---@module "ibl"
 	---@type ibl.config
 	opts = {},
+    },
+    { "catppuccin/nvim",
+	name = "catppuccin",
+	priority = 1000
+    },
+    { "rijulpaul/nightblossom.nvim",
+	name = "nightblossom",
+	lazy = false,
+	priority = 1000,
+	config = function()
+	end,
+    },
+    { 'everviolet/nvim',
+	name = 'evergarden',
+	priority = 1000, -- Colorscheme plugin is loaded first before any other plugins
+    },
+    { "tiagovla/tokyodark.nvim" },
+    { "rose-pine/neovim",
+	name = "rose-pine",
+    },
+    { "ofirgall/ofirkai.nvim" },
+    { 'MunifTanjim/nui.nvim' },
+    { "rcarriga/nvim-notify" },
+    { "folke/noice.nvim",
+	event = "VeryLazy",
+	dependencies = {
+	-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+	    "MunifTanjim/nui.nvim",
+	    -- OPTIONAL:
+	    --   `nvim-notify` is only needed, if you want to use the notification view.
+	    --   If not available, we use `mini` as the fallback
+	    "rcarriga/nvim-notify",
+	}
     }
   },
 
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "habamax" } },
+  -- install = { colorscheme = { "habamax" } },
+  install = { colorscheme = { "ofirkai" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+vim.g.netrw_list_hide = ''
+vim.g.netrw_hide = 0
+
+vim.opt.shiftwidth=4
+vim.opt.number = true
+vim.opt.showcmd = true
+vim.opt.laststatus = 2
+vim.opt.cursorline = true
+vim.opt.autoread = true
 vim.opt.colorcolumn = "80"
+vim.opt.relativenumber = true
+vim.opt.hidden = true
+
+vim.o.background = "dark"
