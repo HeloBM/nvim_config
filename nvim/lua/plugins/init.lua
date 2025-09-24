@@ -1,0 +1,22 @@
+-- COLOR SCHEMES
+
+-- require("plugins.catppuccin")
+-- require("plugins.nightblossom")
+-- require("plugins.evergarden")
+-- require("plugins.tokyodark")
+-- require("plugins.rosepine")
+require("plugins.ofirkai")
+
+require("plugins.lsp_config")
+require("plugins.oil")
+require("plugins.treesitter")
+require("plugins.nvim-web-devicons")
+require("plugins.lualine")
+require("plugins.telescope")
+require("plugins.nvim-tree")
+require("plugins.harpoon")
+require("plugins.blank-line")
+require("plugins.noice")
+require("plugins.Comment")
+require("plugins.nvim-autopairs")
+-- require("plugins.plenary")
