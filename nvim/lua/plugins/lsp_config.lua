@@ -34,6 +34,8 @@ for type, icon in pairs(diagnostic_signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
+local lspconfig = require("lspconfig")
+
 local on_attach = function(_, _)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {})
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
@@ -54,9 +56,7 @@ local on_attach = function(_, _)
 	end, {})
 end
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-local lspconfig = require("lspconfig")
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 lspconfig.lua_ls.setup({
     on_attach = on_attach,

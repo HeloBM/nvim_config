@@ -33,9 +33,6 @@ require("lazy").setup({
 		},
 	    },
 	},
-	config = function()
-	    require("lspconfig").lua_ls.setup{}
-	end,
     },
     { "mason-org/mason.nvim" },
     { "mason-org/mason-lspconfig.nvim",
@@ -45,10 +42,10 @@ require("lazy").setup({
 	    "neovim/nvim-lspconfig",
 	},
     },
-    { 'hrsh7th/nvim-cmp' },
+    { 'hrsh7th/nvim-cmp' }, -- autocomplete
     { 'hrsh7th/cmp-nvim-lsp' },
     { "nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate" },
-    { "nvim-tree/nvim-web-devicons", opts = {} },
+    { "nvim-tree/nvim-web-devicons", opts = {} }, -- nerdfonts
     { 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
     { 'nvim-telescope/telescope.nvim', tag = '0.1.8' },
     { "nvim-lua/plenary.nvim" },
@@ -75,34 +72,32 @@ require("lazy").setup({
     { 'ThePrimeagen/harpoon',
 	requires = {{'nvim-lua/plenary.vim'}}
     },
-    { "lukas-reineke/indent-blankline.nvim",
+    { "lukas-reineke/indent-blankline.nvim", -- indentation lines
 	main = "ibl",
 	---@module "ibl"
 	---@type ibl.config
 	opts = {},
     },
-    { "catppuccin/nvim",
+    { "catppuccin/nvim", -- colorscheme
 	name = "catppuccin",
 	priority = 1000
     },
-    { "rijulpaul/nightblossom.nvim",
+    { "rijulpaul/nightblossom.nvim", -- colorscheme
 	name = "nightblossom",
 	lazy = false,
 	priority = 1000,
 	config = function()
 	end,
     },
-    { 'everviolet/nvim',
+    { 'everviolet/nvim', -- colorscheme
 	name = 'evergarden',
 	priority = 1000, -- Colorscheme plugin is loaded first before any other plugins
     },
-    { "tiagovla/tokyodark.nvim" },
+    { "tiagovla/tokyodark.nvim" }, -- colorscheme
     { "rose-pine/neovim",
 	name = "rose-pine",
     },
-    { "ofirgall/ofirkai.nvim" },
-    { 'MunifTanjim/nui.nvim' },
-    { "rcarriga/nvim-notify" },
+    { "ofirgall/ofirkai.nvim" }, -- colorscheme
     { "folke/noice.nvim",
 	event = "VeryLazy",
 	dependencies = {
@@ -113,12 +108,24 @@ require("lazy").setup({
 	    --   If not available, we use `mini` as the fallback
 	    "rcarriga/nvim-notify",
 	}
-    },
-    { 'eandrju/cellular-automaton.nvim' },
-    { 'numToStr/Comment.nvim' },
+    }, -- pretty UI
+    { "rcarriga/nvim-notify" }, -- noice requirement
+    { 'MunifTanjim/nui.nvim' }, -- noice requirement
+    { 'eandrju/cellular-automaton.nvim' }, -- sand fall and the game of life
+    { 'numToStr/Comment.nvim' }, -- automatic comment
     { 'windwp/nvim-autopairs',
 	event = "InsertEnter",
 	config = true
+    }, -- autopairs () {} '' ""
+    { "vimwiki/vimwiki",
+	init = function()
+	    vim.g.vimwiki_list = {
+		{
+		syntax = 'markdown',
+		ext = '.md',
+		},
+	    }
+	end,
     }
   },
 
@@ -146,3 +153,10 @@ vim.opt.relativenumber = true
 vim.opt.hidden = true
 
 vim.o.background = "dark"
+
+vim.api.nvim_set_keymap('n', '<Leader>ww', ':VimwikiIndex<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>wt', ':VimwikiMakeDiaryNote<CR>', { noremap = true, silent = true })
+
+-- vim.cmd("set nocompatible")
+-- vim.cmd("filetype plugin on")
+-- vim.cmd("syntax on")
