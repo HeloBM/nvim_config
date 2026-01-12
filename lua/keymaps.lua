@@ -20,6 +20,8 @@ vim.keymap.set({ 'v', 'x', 'n' }, '<leader>y', '"+y', {})
 vim.keymap.set({ 'v', 'x', 'n' }, '<leader>d', '"+d', {})
 vim.keymap.set({ 'v', 'x', 'n' }, '<leader>p', '"+p', {})
 
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
+
 -- telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
