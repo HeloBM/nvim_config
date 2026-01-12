@@ -35,6 +35,7 @@ for type, icon in pairs(diagnostic_signs) do
 end
 
 local lspconfig = require("lspconfig")
+-- local lspconfig = vim.lsp.config
 
 local on_attach = function(_, _)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {})

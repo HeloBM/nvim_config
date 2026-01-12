@@ -65,9 +65,6 @@ require("lazy").setup({
 	dependencies = {
 	    "nvim-tree/nvim-web-devicons",
 	},
-	config = function()
-	    require("nvim-tree").setup {}
-	end,
     },
     { 'ThePrimeagen/harpoon',
 	requires = {{'nvim-lua/plenary.vim'}}
@@ -126,7 +123,8 @@ require("lazy").setup({
 		},
 	    }
 	end,
-    }
+    },
+    { "windwp/nvim-ts-autotag" }
   },
 
   -- Configure any other settings here. See the documentation for more details.
@@ -154,9 +152,10 @@ vim.opt.hidden = true
 
 vim.o.background = "dark"
 
-vim.api.nvim_set_keymap('n', '<Leader>ww', ':VimwikiIndex<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>wt', ':VimwikiMakeDiaryNote<CR>', { noremap = true, silent = true })
-
--- vim.cmd("set nocompatible")
--- vim.cmd("filetype plugin on")
--- vim.cmd("syntax on")
+-- local orig_notify = vim.notify
+-- vim.notify = function(msg, level, opts)
+--     if msg:match("require%(.'lspconfig'%) \"framework\" is deprecated") then
+-- 	return
+--     end
+-- orig_notify(msg, level, opts)
+-- end

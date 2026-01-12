@@ -34,3 +34,7 @@ vim.keymap.set('n', '<c-n>', ':NvimTreeFindFileToggle<CR>')
 
 -- cellular-automaton
 vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
+
+-- vimwiki
+vim.api.nvim_set_keymap('n', '<Leader>ww', ':VimwikiIndex<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>wt', ':VimwikiMakeDiaryNote<CR>', { noremap = true, silent = true })
