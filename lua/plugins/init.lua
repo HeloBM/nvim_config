@@ -3,9 +3,9 @@
 -- require("plugins.catppuccin")
 -- require("plugins.nightblossom")
 -- require("plugins.evergarden")
--- require("plugins.tokyodark")
+require("plugins.tokyodark")
 -- require("plugins.rosepine")
-require("plugins.ofirkai")
+-- require("plugins.ofirkai")
 
 require("plugins.lsp_config")
 require("plugins.oil")
