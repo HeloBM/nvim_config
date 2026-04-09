@@ -36,9 +36,8 @@ require("lazy").setup({
     },
     { "mason-org/mason.nvim" },
     { "mason-org/mason-lspconfig.nvim",
-	opts = {},
 	dependencies = {
-	    { "mason-org/mason.nvim", opts = {} },
+	    { "mason-org/mason.nvim"},
 	    "neovim/nvim-lspconfig",
 	},
     },
@@ -71,9 +70,6 @@ require("lazy").setup({
     },
     { "lukas-reineke/indent-blankline.nvim", -- indentation lines
 	main = "ibl",
-	---@module "ibl"
-	---@type ibl.config
-	opts = {},
     },
     { "catppuccin/nvim", -- colorscheme
 	name = "catppuccin",
@@ -146,7 +142,7 @@ vim.opt.showcmd = true
 vim.opt.laststatus = 2
 vim.opt.cursorline = true
 vim.opt.autoread = true
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "100"
 vim.opt.relativenumber = true
 vim.opt.hidden = true
 

@@ -34,9 +34,6 @@ for type, icon in pairs(diagnostic_signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-local lspconfig = require("lspconfig")
--- local lspconfig = vim.lsp.config
-
 local on_attach = function(_, _)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {})
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
@@ -59,37 +56,46 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-lspconfig.lua_ls.setup({
+vim.lsp.config("lua_ls", {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
-	Lua = {
-	    diagnostics = {
-		globals = { "vim" }
-	    }
-	}
+        Lua = {
+            diagnostics = {
+                globals = { "vim" }
+            }
+        }
     }
 })
+vim.lsp.enable("lua_ls")
 
-lspconfig.ts_ls.setup({
+-- ts_ls
+vim.lsp.config("ts_ls", {
     on_attach = on_attach,
     capabilities = capabilities
 })
+vim.lsp.enable("ts_ls")
 
-lspconfig.pyright.setup {
+-- pyright
+vim.lsp.config("pyright", {
     on_attach = on_attach,
     capabilities = capabilities
-}
+})
+vim.lsp.enable("pyright")
 
-lspconfig.dockerls.setup {
+-- dockerls
+vim.lsp.config("dockerls", {
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
+vim.lsp.enable("dockerls")
 
-lspconfig.docker_compose_language_service.setup {
+-- docker_compose_language_service
+vim.lsp.config("docker_compose_language_service", {
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
+vim.lsp.enable("docker_compose_language_service")
 
 vim.filetype.add({
     filename = {
